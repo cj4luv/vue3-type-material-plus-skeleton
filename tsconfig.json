@@ -19,7 +19,9 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@constants": ["src/constants/index.ts", "src/constants/index.js"],
+      "@constants/*": ["src/constants/*"]
     },
     "lib": [
       "esnext",

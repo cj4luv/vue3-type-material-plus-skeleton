@@ -2,6 +2,10 @@
 router-view
 </template>
 
+<script lnag="ts">
+
+</script>
+
 <style lang="scss">
-@import url('styles/reset.css');
+
 </style>

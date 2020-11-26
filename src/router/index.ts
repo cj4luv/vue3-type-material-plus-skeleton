@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
+
+import Home from '@views/Home.vue';
+import { routerPaths } from '@constants';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: routerPaths.root,
     name: 'Home',
     component: Home,
   },
