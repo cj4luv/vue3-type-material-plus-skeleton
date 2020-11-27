@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { routerPaths } from '@constants';
-import { Home } from '@views';
+import { Home, NotFound } from '@views';
 import { DefaultLayout } from '@layouts';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: routerPaths.root,
-    name: 'root',
     component: DefaultLayout,
+    redirect: routerPaths.home,
     children: [
       {
         path: routerPaths.home,
@@ -27,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '@layouts/LoginLayout.vue'),
     meta: { requiresAuth: false },
   },
+  { path: '/*', component: NotFound },
 ];
 
 const router = createRouter({
@@ -35,6 +36,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log('router before', to.matched);
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const auth = true;
     if (!auth) {

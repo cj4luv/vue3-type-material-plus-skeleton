@@ -14,6 +14,8 @@ export default defineComponent({
     const count = ref(0);
     const object = reactive({ foo: 'bar' }) as Foo;
 
+    console.log('home');
+
     // expose to template
     return {
       count,
