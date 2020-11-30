@@ -1,27 +1,17 @@
 <template lang="pug">
-el-container.container
-  el-header.header
-    span Tom
+el-container.app-wrapper
+  sidebar.sidebar-container
 
-  el-container
-    el-aside.aside
-      el-menu(:default-openeds="['1', '3']")
-        el-submenu(index="1")
-          template(#title)
-            i.el-icon-message Navigator One
-          el-menu-item-group
-            template(slot="title") Group 1
-            el-menu-item(index="1-1") Option 1
-          el-menu-item(index="1-2") Option 2
-
-    el-main
-      router-view
 </template>
 
 <script lnag="ts">
 import { ref, defineComponent } from 'vue';
+import { Sidebar } from './components';
 
 export default defineComponent({
+  components: defineComponent({
+    Sidebar,
+  }),
   setup() {
     const count = ref(0);
 
@@ -31,7 +21,22 @@ export default defineComponent({
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "~@styles/mixin.scss";
+@import "~@styles/variables.scss";
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  &.mobile.openSidebar {
+    position: fixed;
+    top: 0;
+  }
+}
+
 .el-header {
   background-color: #B3C0D1;
   color: #333;
