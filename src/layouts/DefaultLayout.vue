@@ -1,16 +1,20 @@
 <template lang="pug">
 el-container.app-wrapper
   sidebar.sidebar-container
+  .main-container
+    div
+      navbar
 
 </template>
 
 <script lnag="ts">
 import { ref, defineComponent } from 'vue';
-import { Sidebar } from './components';
+import { Sidebar, Navbar } from './components';
 
 export default defineComponent({
   components: defineComponent({
     Sidebar,
+    Navbar,
   }),
   setup() {
     const count = ref(0);
