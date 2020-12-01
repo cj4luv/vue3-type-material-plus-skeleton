@@ -103,7 +103,6 @@ export default {
       const { item } = this;
       const r = this.onlyOneChild.meta.icon || (item.meta && item.meta.icon);
       if (typeof r === 'string') {
-        console.log('icon', r);
         return r;
       }
       return '';

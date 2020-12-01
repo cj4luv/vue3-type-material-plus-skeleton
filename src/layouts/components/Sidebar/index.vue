@@ -35,7 +35,6 @@ export default {
       'sidebar',
     ]),
     permissionRoutes() {
-      console.log('permissionRoutes', data);
       return data;
     },
     activeMenu() {

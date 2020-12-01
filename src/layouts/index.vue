@@ -1,5 +1,5 @@
 <template lang="pug">
-.app-wrapper
+.app-wrapper(:class="classObj")
   sidebar.sidebar-container
   .main-container.hasTagsView
     div
@@ -8,18 +8,30 @@
 </template>
 
 <script lnag="ts">
-import { ref, defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
+
 import { Sidebar, Navbar } from './components';
 
 export default defineComponent({
-  components: defineComponent({
+  name: 'Layout',
+  components: {
     Sidebar,
     Navbar,
-  }),
+  },
   setup() {
-    const count = ref(0);
+    const store = useStore();
+    const { app } = store.state;
+    const { sidebar, device } = app;
 
-    return { count };
+    const classObj = computed(() => ({
+      hideSidebar: !sidebar.opened,
+      openSidebar: sidebar.opened,
+      withoutAnimation: sidebar.withoutAnimation,
+      mobile: device === 'mobile',
+    }));
+
+    return { classObj };
   },
 });
 

@@ -2,12 +2,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { routerPaths } from '@constants';
 import { Dashboard, NotFound } from '@views';
-import { DefaultLayout } from '@layouts';
+import Layout from '@layouts';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: routerPaths.root,
-    component: DefaultLayout,
+    component: Layout,
     redirect: routerPaths.dashboard,
     children: [
       {
@@ -18,15 +18,15 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  {
-    path: routerPaths.login,
-    name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@layouts/LoginLayout.vue'),
-    meta: { requiresAuth: false },
-  },
+  // {
+  //   path: routerPaths.login,
+  //   name: 'Login',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '@layouts/LoginLayout.vue'),
+  //   meta: { requiresAuth: false },
+  // },
   { path: '/*', component: NotFound },
 ];
 
@@ -37,7 +37,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('router before', to.matched);
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     const auth = true;
     if (!auth) {
