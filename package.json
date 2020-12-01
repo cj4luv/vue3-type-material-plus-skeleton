@@ -13,6 +13,7 @@
     "element-plus": "^1.0.1-alpha.22",
     "fuse.js": "^6.4.3",
     "js-cookie": "^2.2.1",
+    "normalize.css": "^8.0.1",
     "path-to-regexp": "^6.2.0",
     "screenfull": "^5.0.2",
     "vue": "^3.0.0",

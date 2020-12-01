@@ -1,20 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import { routerPaths } from '@constants';
-import { Home, NotFound } from '@views';
+import { Dashboard, NotFound } from '@views';
 import { DefaultLayout } from '@layouts';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: routerPaths.root,
     component: DefaultLayout,
-    redirect: routerPaths.home,
+    redirect: routerPaths.dashboard,
     children: [
       {
-        path: routerPaths.home,
-        name: 'Home',
-        meta: { requiresAuth: true },
-        component: Home,
+        path: routerPaths.dashboard,
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true },
+        component: Dashboard,
       },
     ],
   },
@@ -32,6 +32,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  scrollBehavior: () => ({ top: 0 }),
   routes,
 });
 

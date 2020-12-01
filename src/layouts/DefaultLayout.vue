@@ -1,7 +1,7 @@
 <template lang="pug">
-el-container.app-wrapper
+.app-wrapper
   sidebar.sidebar-container
-  .main-container
+  .main-container.hasTagsView
     div
       navbar
 
