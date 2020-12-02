@@ -10,8 +10,8 @@ type State = typeof app;
 
 const getters: GetterTree<State, State> = {
   sidebar: (s) => s.app.sidebar,
-  // size: (state) => state.app.size,
-  // device: (state) => state.app.device,
+  size: (s) => s.app.size,
+  device: (s) => s.app.device,
   // visitedViews: (state) => state.tagsView.visitedViews,
   // cachedViews: (state) => state.tagsView.cachedViews,
   // token: (state) => state.user.token,

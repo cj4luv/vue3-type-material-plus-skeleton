@@ -27,6 +27,9 @@ export interface Sidebar {
 
 export type Mutations<S = State> = {
   [MutationTypes.TOGGLE_SIDEBAR](state: S, payload: Sidebar): void;
+  [MutationTypes.CLOSE_SIDEBAR](state: S, payload: boolean): void;
+  [MutationTypes.TOGGLE_DEVICE](state: S, payload: string): void;
+  [MutationTypes.SET_SIZE](state: S, payload: string): void;
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -39,15 +42,15 @@ export const mutations: MutationTree<State> & Mutations = {
       Cookies.set('sidebarStatus', '0');
     }
   },
-  CLOSE_SIDEBAR: (state, withoutAnimation) => {
+  [MutationTypes.CLOSE_SIDEBAR]: (state, withoutAnimation) => {
     Cookies.set('sidebarStatus', '0');
     state.sidebar.opened = false;
     state.sidebar.withoutAnimation = withoutAnimation;
   },
-  TOGGLE_DEVICE: (state, device) => {
+  [MutationTypes.TOGGLE_DEVICE]: (state, device) => {
     state.device = device;
   },
-  SET_SIZE: (state, size) => {
+  [MutationTypes.SET_SIZE]: (state, size) => {
     state.size = size;
     Cookies.set('size', size);
   },
@@ -60,22 +63,16 @@ export enum ActionTypes {
   setSize = 'setSize',
 }
 
-type AugmentedActionContext = {
+export type AugmentedActionContext = {
   commit<K extends keyof Mutations>(
     key: K,
     payload: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<State, State>, 'commit'>
-
-type AugmentedActionContexts = {
-  commit<K extends keyof Mutations>(
-    key: K,
   ): ReturnType<Mutations[K]>;
 } & ActionContext<State, State>
 
 export interface Actions {
   [ActionTypes.toggleSideBar](
-    { commit }: AugmentedActionContexts,
+    { commit }: AugmentedActionContext,
   ): void;
 }
 
@@ -83,13 +80,13 @@ export const actions: ActionTree<State, State> & Actions = {
   [ActionTypes.toggleSideBar]({ commit }) {
     commit('TOGGLE_SIDEBAR');
   },
-  closeSideBar({ commit }, { withoutAnimation }) {
+  [ActionTypes.closeSideBar]({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation);
   },
-  toggleDevice({ commit }, device) {
+  [ActionTypes.toggleDevice]({ commit }, device) {
     commit('TOGGLE_DEVICE', device);
   },
-  setSize({ commit }, size) {
+  [ActionTypes.setSize]({ commit }, size) {
     commit('SET_SIZE', size);
   },
 };

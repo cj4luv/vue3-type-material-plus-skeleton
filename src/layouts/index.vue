@@ -12,6 +12,7 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
 import { Sidebar, Navbar } from './components';
+import ResizeMixin from './mixin/ResizeHandler';
 
 export default defineComponent({
   name: 'Layout',
@@ -19,6 +20,7 @@ export default defineComponent({
     Sidebar,
     Navbar,
   },
+  mixins: [ResizeMixin],
   setup() {
     const store = useStore();
     const { app } = store.state;
@@ -34,7 +36,6 @@ export default defineComponent({
     return { classObj };
   },
 });
-
 </script>
 
 <style lang="scss" scoped>
@@ -76,5 +77,4 @@ export default defineComponent({
   text-align: right;
   font-size: 12px;
 }
-
 </style>

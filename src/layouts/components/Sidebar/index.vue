@@ -59,9 +59,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.sidebar {
-  width: 250px;
-}
-</style>

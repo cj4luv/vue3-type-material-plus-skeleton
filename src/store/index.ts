@@ -7,21 +7,25 @@ const modulesFiles = require.context('./modules', true, /\.ts$/);
 
 // you do not need `import app from './modules/app'`
 // it will auto require all vuex module from modules file
-const modules: any = modulesFiles.keys().reduce((m: any, modulePath) => {
+const modules: any = modulesFiles.keys().reduce((ac: any, modulePath: string) => {
   // set './app.js' => 'app'
   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1');
   const value = modulesFiles(modulePath);
   // console.log('moduleName', m, moduleName, value);
 
-  if (m && m[moduleName]) {
-    m = {
+  if (ac && ac[moduleName]) {
+    ac = {
       [value.default]: {},
     };
   } else {
-    m[moduleName] = value.default;
+    ac[moduleName] = {
+      ...ac,
+      ...value.default,
+    };
   }
 
-  return m;
+  console.log('ac', ac);
+  return ac;
 }, {});
 
 export default createStore({
