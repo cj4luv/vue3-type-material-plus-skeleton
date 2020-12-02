@@ -19,7 +19,6 @@ export default {
     window.removeEventListener('resize', this.$_resizeHandler);
   },
   mounted() {
-    console.log('mou');
     const isMobile = this.$_isMobile();
     if (isMobile) {
       store.dispatch('app/toggleDevice', 'mobile');
