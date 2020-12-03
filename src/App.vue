@@ -3,5 +3,5 @@ router-view
 </template>
 
 <style lang="scss">
-@import url('styles/reset.css');
+/* @import url('styles/reset.css'); */
 </style>
