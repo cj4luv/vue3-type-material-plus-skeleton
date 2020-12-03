@@ -23,7 +23,11 @@
       "@views": ["src/views/index.ts"],
       "@views/*": ["src/views/*"],
       "@layouts": ["src/layouts/index.ts"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@utils/*": ["src/utils/*"],
+      "@store": ["src/store/index.ts"],
+      "@router": ["src/router/index.ts"],
+      "@config/*": ["src/config/*"]
     },
     "lib": [
       "esnext",

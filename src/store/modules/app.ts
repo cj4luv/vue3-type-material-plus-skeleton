@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import Cookies from 'js-cookie';
-import { MutationTree, ActionTree, ActionContext } from 'vuex';
+import { MutationTree, ActionTree } from 'vuex';
 
 export const state = {
   sidebar: {
@@ -63,20 +63,7 @@ export enum ActionTypes {
   setSize = 'setSize',
 }
 
-export type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
-    key: K,
-    payload: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>;
-} & ActionContext<State, State>
-
-export interface Actions {
-  [ActionTypes.toggleSideBar](
-    { commit }: AugmentedActionContext,
-  ): void;
-}
-
-export const actions: ActionTree<State, State> & Actions = {
+export const actions: ActionTree<State, State> = {
   [ActionTypes.toggleSideBar]({ commit }) {
     commit('TOGGLE_SIDEBAR');
   },
