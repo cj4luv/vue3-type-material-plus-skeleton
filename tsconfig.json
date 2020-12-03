@@ -17,9 +17,13 @@
       "jest"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@": ["src"],
+      "@constants": ["src/constants/index.ts"],
+      "@constants/*": ["src/constants/*"],
+      "@views": ["src/views/index.ts"],
+      "@views/*": ["src/views/*"],
+      "@layouts": ["src/layouts/index.ts"],
+      "@layouts/*": ["src/layouts/*"]
     },
     "lib": [
       "esnext",

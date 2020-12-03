@@ -1,7 +1,13 @@
 <template lang="pug">
-router-view
+.app
+  input
+  input
 </template>
 
+<script lnag="ts">
+
+</script>
+
 <style lang="scss">
-@import url('styles/reset.css');
+
 </style>

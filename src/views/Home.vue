@@ -1,18 +1,27 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+<template lang="pug">
+div {{ count }} {{ object.foo }}
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '../components/HelloWorld.vue'; // @ is an alias to /src
 
-@Options({
-  components: {
-    HelloWorld,
+import { ref, reactive, defineComponent } from 'vue';
+
+interface Foo {
+  foo: string;
+}
+
+export default defineComponent({
+  setup() {
+    const count = ref(0);
+    const object = reactive({ foo: 'bar' }) as Foo;
+
+    console.log('home');
+
+    // expose to template
+    return {
+      count,
+      object,
+    };
   },
-})
-export default class Home extends Vue {}
+});
 </script>
