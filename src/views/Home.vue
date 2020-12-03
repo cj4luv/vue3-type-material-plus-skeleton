@@ -3,6 +3,7 @@ div {{ count }} {{ object.foo }}
 </template>
 
 <script lang="ts">
+
 import { ref, reactive, defineComponent } from 'vue';
 
 interface Foo {
