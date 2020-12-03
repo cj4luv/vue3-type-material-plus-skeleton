@@ -1,2 +1,3 @@
-export { default as LoginLayout } from './LoginLayout.vue';
-export { default as DefaultLayout } from './DefaultLayout.vue';
+import Layout from './index.vue';
+
+export default Layout;
